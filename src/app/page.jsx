@@ -4,6 +4,7 @@ import axios from 'axios';
 import Loader from './component/Loader';
 import UserList from './component/UserList';
 import UserDetails from './component/UserDetail';
+
 const HomePage = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -39,7 +40,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="h-screen flex bg-gray-100 w-full">
+    <div className="h-screen flex flex-col bg-gray-100 w-full md:flex-row">
       {loading ? (
         <Loader />
       ) : error ? (
@@ -52,15 +53,14 @@ const HomePage = () => {
         </div>
       ) : (
         <>
-          <div className='w-full flex'>
-
+          <div className="w-full flex flex-col md:flex-row h-full">
             {/* Left Sidebar: User List */}
-            <div className="w-1/3 h-full border-r border-gray-300 overflow-y-auto">
+            <div className="w-full md:w-1/3 h-1/2 md:h-full border-b md:border-b-0 md:border-r border-gray-300 overflow-y-auto">
               <UserList users={users} onSelect={setSelectedUser} />
             </div>
 
             {/* Right Sidebar: User Details */}
-            <div className="w-2/3 h-full p-4">
+            <div className="w-full md:w-2/3 h-1/2 md:h-full p-4">
               <UserDetails user={selectedUser} />
             </div>
           </div>
